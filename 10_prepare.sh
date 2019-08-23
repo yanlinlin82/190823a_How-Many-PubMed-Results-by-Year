@@ -20,17 +20,17 @@ fi
 
 mkdir -pv data/genes/
 
-cat data/top-50-genes.txt \
-	| sed 1d \
-	| cut -f1 \
-	| while read GENE; do
-		if [ ! -e "data/genes/${GENE}.csv" ]; then
-			echo 1>&2 "Download 'data/genes/${GENE}.csv'"
-			curl 'https://www.ncbi.nlm.nih.gov/pubmed?p$l=Email&Mode=download&term='${GENE}'&dlid=timeline&filename=timeline.csv&bbid=NCID_1_7490750_130.14.22.33_9001_1566563559_1548472358_0MetA0_S_MegaStore_F_1&p$debugoutput=off' > data/genes/${GENE}.csv
-			sleep 1
-		fi
-	done
-
+#cat data/top-50-genes.txt \
+#	| sed 1d \
+#	| cut -f1 \
+#	| while read GENE; do
+#		if [ ! -e "data/genes/${GENE}.csv" ]; then
+#			echo 1>&2 "Download 'data/genes/${GENE}.csv'"
+#			curl 'https://www.ncbi.nlm.nih.gov/pubmed?p$l=Email&Mode=download&term='${GENE}'&dlid=timeline&filename=timeline.csv&bbid=NCID_1_7490750_130.14.22.33_9001_1566563559_1548472358_0MetA0_S_MegaStore_F_1&p$debugoutput=off' > data/genes/${GENE}.csv
+#			sleep 1
+#		fi
+#	done
+#
 if [ ! -e "data/gene-results.txt" ]; then
 	echo 1>&2 "Generate 'data/gene-results.txt'"
 	cat data/top-50-genes.txt \
