@@ -41,3 +41,14 @@ if [ ! -e "data/gene-results.txt" ]; then
 			| awk -F'\t' 'BEGIN{OFS="\t";print"gene","cosmic","year","pubmed"}$3!=""{print$0}' \
 			> data/gene-results.txt
 fi
+
+if [ ! -e "data/gene-results-2.txt" ]; then
+	echo 1>&2 "Generate 'data/gene-results-2.txt'"
+	cat data/top-50-genes.txt \
+		| sed 1d \
+		| while read GENE COUNT; do
+			cat data/genes2/${GENE}.csv | sed 1,2d | awk -F',' '{OFS="\t";print"'${GENE}'",'${COUNT}',$1,$2}'
+		done \
+			| awk -F'\t' 'BEGIN{OFS="\t";print"gene","cosmic","year","pubmed"}$3!=""{print$0}' \
+			> data/gene-results-2.txt
+fi
