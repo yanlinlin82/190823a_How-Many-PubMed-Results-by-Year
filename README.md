@@ -2,6 +2,6 @@
 
 数据采集自：COSMIC、PubMed
 
-![](genes-1.png)
+![](genes.png)
 
 ![](genes-2.png)
